@@ -1,5 +1,195 @@
 <!DOCTYPE html>
 
 <html>
+    <script type="text/javascript" src="ElectroMachine.js"></script>
+
+    <script type="text/javascript">
+        function runCalculation(){
+            var machine = new ElectroMachine();
+            machine.doCalculate();
+            var textArea = document.getElementById('outResult')
+            textArea.value = machine.allLogRecords;
+            textArea.style.height = ""; /* Reset the height*/
+            textArea.style.height = textArea.scrollHeight + "px";
+        }
+    </script>    
+
     <h1>test</h1>
+    <br/>
+    <table width="800px">
+        <tr>
+            <td>
+            <table cellspacing="3" cellpadding="3">
+                <tr>
+                    <td>
+                        Сопротивление обмотки статора (Ом, 0.5 - 5)
+                    </td>
+                    <td>
+                        <input type="number" min="0.5" max="5" step="0.001" value="1.432" id="statorResist"/>           
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>
+                        Сопротивление обмотки ротора (Ом, 0.5 - 5)
+                    </td>
+                    <td>
+                        <input type="number" min="0.5" max="5" step="0.001" value="2.21" id="rotorResist"/>           
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Сопротивление рассеивания (Ом, 1 - 10)
+                    </td>
+                    <td>
+                        <input type="number" min="1" max="10" step="0.01" value="3.17" id="diffResist"/>           
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Приведенный коэффициент (0,5 - 2,5)
+                    </td>
+                    <td>
+                        <input type="number" min="0.5" max="2.5" step="0.001" value="0.969" id="prCoeff"/>           
+                    </td>
+                </tr>        
+        
+        
+                <tr>
+                    <td>
+                        Коэффициент приведения по току (0,5 - 1):
+                    </td>
+                    <td>
+                        <input type="number" min="0.5" max="1" step="0.001" value="0.739" id="tokCoeff"/>           
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Диаметр машины (метров) (0,1 - 0,5)
+                    </td>
+                    <td>
+                        <input type="number" min="0.1" max="0.5" step="0.01" value="0.2" id="mDiameter"/>
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Длина машины (метров) (0,05 - 1)
+                    </td>
+                    <td>
+                        <input type="number" min="0.05" max="1" step="0.01" value="0.11" id="mLength"/>
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Витков статора (100 - 500)
+                    </td>
+                    <td>
+                        <input type="number" min="100" max="500" step="1" value="264" id="stTurns"/>           
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Напряжение (вольт)
+                    </td>
+                    <td>
+                        <select id="volts">
+                            <option value="220" selected>220</option>
+                            <option value="380">380</option>
+                        </select>
+                    </td>
+                </tr>        
+        
+                
+                <tr>
+                    <td>
+                        Емкостное сопротивление обмотки ротора (в единицах)
+                    </td>
+                    <td>
+                        <input type="number" value="14.33" step="0.01" min="1" max="100" id="rotorWindingResist"/>           
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Проводимость воздушного зазора (0,0003 - 0,001)
+                    </td>
+                    <td>
+                        <input type="number" min="0.0003" max="0.001" step="0.000001" value="0.000654" id="airGapConduct"/>           
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Полюстность обмотки (1 - 10)
+                    </td>
+                    <td>
+                        <input type="number" min="1" max="10" step="1" value="5" id="windingPolus1"/>           
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Полюстность обмотки 2 (1 - 10)
+                    </td>
+                    <td>
+                        <input type="number" min="1" max="10" step="1" value="3" id="windingPolus2"/>           
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Число фаз
+                    </td>
+                    <td>
+                        <select id="phasesCount">
+                            <option value="3" selected>2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </td>
+                </tr>        
+        
+                <tr>
+                    <td>
+                        Обмоточный коэффициент (0,5 - 1)
+                    </td>
+                    <td>
+                        <input type="number" min="0.5" max="1" step="0.01" value="0.93" id="windingCoeff"/>           
+                    </td>
+                </tr>         
+        
+                <tr>
+                    <td>
+                        Коэффициент редукции (10 - 30)
+                    </td>
+                    <td>
+                        <input type="number" min="10" max="30" step="1" value="17" id="reductionCoeff"/>           
+                    </td>
+                </tr>         
+            </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <button style="height:2em;width:10em" title="Рассчитать" onclick="runCalculation();">Рассчитать</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <textarea style="width:100%" id="outResult"></textarea>
+            </td>
+        </tr>
+
+    </table>
+
+
+    
+    <br/>
 </html>
