@@ -134,7 +134,7 @@ class ElectroMachine {
           A4 = 0;
     
           HH = this.YhFunction(FP, FS, this.AP1, this.AP2, AH);
-          H4 = this.YhFunction(FP, FS, this.AP1, this.AP2, A4);
+          // H4 = this.YhFunction(FP, FS, this.AP1, this.AP2, A4);
     
           SHS = this.Bz2Function(HH) * Math.cos(this.AP2 * AH);
           SHP = this.Bz2Function(HH) * Math.cos(this.AP1 * AH);
@@ -151,6 +151,7 @@ class ElectroMachine {
             SHP = SHP + this.Bz2Function(HH) * Math.cos(this.AP1 * AH);
             S43 = S43 + this.Bz2Function(HH) * Math.cos(this.AP2 * A4);
             S45 = S45 + this.Bz2Function(H4) * Math.cos(this.AP1 * A4);
+            // console.log("i: " + i + " |SHS: " + this.fmt1(SHS) + " |SHP: " + this.fmt1(SHP) + " |HH: " + this.fmt1(HH) + " |H4: " + this.fmt1(H4) + " |S43: " + this.fmt1(S43) + " |S45: " + this.fmt1(S45) );
           }
     
           HN = this.YhFunction(FP, FS, this.AP1, this.AP2, 0);
@@ -165,12 +166,21 @@ class ElectroMachine {
     
           AKMP1 = FP * this.AGO / BMP;
           AKMS1 = FS * this.AGO / BMS;
-          this.AKMP = this.AKMP + (AKMP1 - this.AKMP) / 2;
-          this.AKMS = this.AKMS + (AKMS1 - this.AKMS) / 2;
           DELP = Math.abs(AKMP1 - this.AKMP);
           DELS = Math.abs(AKMS1 - this.AKMS);
+          this.AKMP = this.AKMP + (AKMP1 - this.AKMP) / 2;
+          this.AKMS = this.AKMS + (AKMS1 - this.AKMS) / 2;
     
-          //printLog("i: " + i + " |B1: " + String.format(f_format, B1) + " |BMS: " + String.format(f_format, BMS) + " |AKMS1: " + String.format(f_format, AKMS1));
+          // console.log("B1: " + this.fmt1(B1) 
+          // + " |BMS: " + this.fmt1(BMS) 
+          // + " |BMP: " + this.fmt1(BMP) 
+          // + " |AKMP1: " + this.fmt1(AKMP1) 
+          // + " |AKMS1: " + this.fmt1(AKMS1)
+          // + " |AKMP: " + this.fmt1(this.AKMP) 
+          // + " |AKMS: " + this.fmt1(this.AKMS)
+          // + " |DELP: " + this.fmt1(DELP) 
+          // + " |DELS: " + this.fmt1(DELS)
+          // );
         } while (DELS >= 0.02 || DELP >= 0.02);
     
     

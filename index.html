@@ -4,13 +4,43 @@
     <script type="text/javascript" src="ElectroMachine.js"></script>
 
     <script type="text/javascript">
+
+        function getFormValue(vname) {
+            return Number(document.getElementById('rotorResist').value);
+        }
+
         function runCalculation(){
+            var textArea = document.getElementById('outResult');
+            textArea.value = "";
+
             var machine = new ElectroMachine();
+
+            machine.R1 = getFormValue('statorResist');
+            machine.RP2 = getFormValue('rotorResist');
+            machine.AXG1 = getFormValue('diffResist');
+            machine.DZ1 = getFormValue('prCoeff');
+            machine.AKI = getFormValue('tokCoeff');
+            machine.DA = getFormValue('mDiameter');
+            machine.ALA = getFormValue('mLength');
+            machine.W1 = getFormValue('stTurns');
+            machine.U1 = getFormValue('volts');
+            machine.XPC = getFormValue('rotorWindingResist');
+            machine.AP1 = getFormValue('windingPolus1');
+            machine.AP2 = getFormValue('windingPolus2');
+            machine.M1 = getFormValue('phasesCount');
+            machine.AK01 = getFormValue('windingCoeff');
+            machine.AKP = getFormValue('reductionCoeff');
             machine.doCalculate();
-            var textArea = document.getElementById('outResult')
+            
             textArea.value = machine.allLogRecords;
-            textArea.style.height = ""; /* Reset the height*/
+            textArea.style.height = "";
             textArea.style.height = textArea.scrollHeight + "px";
+        }
+
+        function clearResult() {
+            var textArea = document.getElementById('outResult');
+            textArea.value = "";
+            textArea.style.height = "";
         }
     </script>    
 
@@ -148,8 +178,8 @@
                     </td>
                     <td>
                         <select id="phasesCount">
-                            <option value="3" selected>2</option>
-                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
                         </select>
                     </td>
                 </tr>        
@@ -177,6 +207,7 @@
 
         <tr>
             <td>
+                <button style="height:2em;width:10em" title="Очистить" onclick="clearResult();">Очистить</button>
                 <button style="height:2em;width:10em" title="Рассчитать" onclick="runCalculation();">Рассчитать</button>
             </td>
         </tr>
