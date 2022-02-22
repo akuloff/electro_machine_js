@@ -274,14 +274,17 @@
 
             <tr>
                 <td>
-                    <textarea style="width:100%" id="outResult"></textarea>
+                    <form action="mailto:aaa@bbb.com">
+                        <textarea style="width:100%" id="outResult"></textarea>
+                        <input style="height:2em;width:15em" type="submit" value="Отправить на email" id="sendButton">
+                    </form>
                 </td>
             </tr>
 
             <tr>
                 <td>
                     <button style="height:2em;width:10em" title="Распечатать" onclick="printResult();" id="printButton">Распечатать</button>
-                    <button style="height:2em;width:15em" id="sendButton" title="Отправить на email" onclick="sendEmail();">Отправить на email</button>                    
+                    <!-- <button style="height:2em;width:15em" id="sendButton" title="Отправить на email" onclick="sendEmail();">Отправить на email</button>                     -->
                 </td>
             </tr>
 
