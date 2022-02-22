@@ -40,7 +40,6 @@ class ElectroMachine {
     }
 
     fmt1(v) {
-      // return String.format(this.f_format, v);
       return v.toFixed(4);
     }  
 
@@ -134,8 +133,6 @@ class ElectroMachine {
           A4 = 0;
     
           HH = this.YhFunction(FP, FS, this.AP1, this.AP2, AH);
-          // H4 = this.YhFunction(FP, FS, this.AP1, this.AP2, A4);
-    
           SHS = this.Bz2Function(HH) * Math.cos(this.AP2 * AH);
           SHP = this.Bz2Function(HH) * Math.cos(this.AP1 * AH);
     
@@ -208,8 +205,6 @@ class ElectroMachine {
         this.printLog("AI1: " + this.fmt1(AI1) + "\tAI2: " + this.fmt1(AI2) + "\tQ1: " + this.fmt1(Q1) + "\tAKPD: " + this.fmt1(AKPD));
         this.printLog("AI0: " + this.fmt1(AI0) + "\tAI2P: " + this.fmt1(AI2P) + "\tAMS: " + this.fmt1(AMS) + "\tAMA: " + this.fmt1(AMA));
         this.printLog("FI1: " + this.fmt1(FI1) + "\tFI2: " + this.fmt1(FI2) + "\tFI0: " + this.fmt1(FI0));
-        //printLog("m1: " + M1 + " |H: " + H + " |AKP: " + AKP + " |OMG: " + OMG + " |AKMP: " + AKMP);
-    
       }
 
     
@@ -222,7 +217,6 @@ class ElectroMachine {
         this.printLog("U1: " + this.fmt1(this.U1) + "\tXPC: " + this.fmt1(this.XPC) + "\tAGO: " + this.fmt2(this.AGO) + "\n");
         
         for (var K = 0; K < 21; K++) {
-          //printLog("K: " + K + "\n");
           this.ALFN = this.ALFN - 0.05 * this.PI;
           this.amRoutine();
           this.printLog("S: " + this.fmt1(this.S) + "\tH: " + this.fmt1(this.H) + "\tALFN: " + this.fmt1(this.ALFN) + "\tAK1: " + this.fmt1(this.AK1) + "\n");
@@ -235,8 +229,6 @@ class ElectroMachine {
         this.AKMP = 1;
         this.AKMS = 1;
     
-        //printLog("\n");
-        //printLog("start J --------------------------------------------");
         for (var J = 0; J < 7; J++) {
           this.S = this.S + 0.05;
           if (this.S > 1) this.S = 1;

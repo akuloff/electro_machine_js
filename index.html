@@ -12,6 +12,7 @@
             textArea.style.display="none"
             document.getElementById("printButton").style.display="none"
             document.getElementById("sendButton").style.display="none"
+            document.getElementById("clearButton").style.display="none"
         }
 
         function getFormValue(vname) {
@@ -48,6 +49,7 @@
 
             document.getElementById("printButton").style.display=""
             document.getElementById("sendButton").style.display=""
+            document.getElementById("clearButton").style.display=""
         }
 
         function clearResult() {
@@ -64,6 +66,14 @@
             childWindow.print();
             childWindow.document.close();
             childWindow.close();
+        }
+
+        function sendEmail(){
+            var email = "aaa@bbb.com";
+            var subject = "SDER calculation";
+            var textArea = document.getElementById('outResult');
+            var emailBody = encodeURI(textArea.value);
+            window.location = "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
         }
 
     </script>    
@@ -251,7 +261,7 @@
             <tr>
                 <td>
                     <button style="height:2em;width:10em" title="Рассчитать" onclick="runCalculation();">Рассчитать</button>                
-                    <button style="height:2em;width:10em" title="Очистить" onclick="clearResult();">Очистить</button>
+                    <button style="height:2em;width:10em" title="Очистить" onclick="clearResult();" id="clearButton">Очистить</button>
                 </td>
             </tr>
 
@@ -264,7 +274,7 @@
             <tr>
                 <td>
                     <button style="height:2em;width:10em" title="Распечатать" onclick="printResult();" id="printButton">Распечатать</button>
-                    <button style="height:2em;width:15em" id="sendButton" title="Отправить на email" onclick="location.href=&quot;mailto:test@b.com?body=&quot;+encodeURI(document.getElementById(&quot;outResult&quot;).value);">Отправить на email</button>                    
+                    <button style="height:2em;width:15em" id="sendButton" title="Отправить на email" onclick="sendEmail();">Отправить на email</button>                    
                 </td>
             </tr>
 
