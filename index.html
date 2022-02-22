@@ -6,7 +6,12 @@
     <script type="text/javascript">
 
         function initPage(){
+            var textArea = document.getElementById('outResult');
+            textArea.value = "";
+            textArea.style.height = "";
+            textArea.style.display="none"
             document.getElementById("printButton").style.display="none"
+            document.getElementById("sendButton").style.display="none"
         }
 
         function getFormValue(vname) {
@@ -38,16 +43,15 @@
             
             textArea.value = machine.allLogRecords;
             textArea.style.height = "";
+            textArea.style.display=""
             textArea.style.height = textArea.scrollHeight + "px";
 
             document.getElementById("printButton").style.display=""
+            document.getElementById("sendButton").style.display=""
         }
 
         function clearResult() {
-            var textArea = document.getElementById('outResult');
-            textArea.value = "";
-            textArea.style.height = "";
-            document.getElementById("printButton").style.display="none"
+            initPage();
         }
 
         function printResult() {
@@ -64,10 +68,28 @@
 
     </script>    
 
+    <head>
+        <style>
+            .center {
+                text-align: center;
+            }            
+         </style>        
+    </head>    
+
     <body onload="initPage();">
-        <h1>test</h1>
-        <br/>
-        <table width="800px">
+        <table width="900px">
+            <tr>
+                <td>
+                    <img class="center" src="img/sder_logo.jpg"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <h1>Расчет двигателя СДЭК-РК</h1>
+                </td>
+            </tr>
+
             <tr>
                 <td>
                 <table cellspacing="3" cellpadding="3">
@@ -242,6 +264,7 @@
             <tr>
                 <td>
                     <button style="height:2em;width:10em" title="Распечатать" onclick="printResult();" id="printButton">Распечатать</button>
+                    <button style="height:2em;width:15em" id="sendButton" title="Отправить на email" onclick="location.href=&quot;mailto:test@b.com?body=&quot;+encodeURI(document.getElementById(&quot;outResult&quot;).value);">Отправить на email</button>                    
                 </td>
             </tr>
 
