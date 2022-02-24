@@ -28,7 +28,7 @@
             machine.R1 = getFormValue('statorResist');
             machine.RP2 = getFormValue('rotorResist');
             machine.AXG1 = getFormValue('diffResist');
-            machine.DZ1 = getFormValue('prCoeff');
+            machine.DZ = getFormValue('prCoeff');
             machine.AKI = getFormValue('tokCoeff');
             machine.DA = getFormValue('mDiameter');
             machine.ALA = getFormValue('mLength');
@@ -275,7 +275,7 @@
             <tr>
                 <td>
                     <form action="mailto:aaa@bbb.com">
-                        <textarea style="width:100%" id="outResult"></textarea>
+                        <textarea style="width:100%; font-size: small; font-family: 'Courier New', Courier, monospace;" id="outResult"></textarea>
                         <input style="height:2em;width:15em" type="submit" value="Отправить на email" id="sendButton">
                     </form>
                 </td>
