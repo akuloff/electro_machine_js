@@ -52,6 +52,7 @@ class ElectroMachine {
         return fp * Math.cos(ap1 * x) + fs * Math.cos(ap2 * x);
     }    
 
+    //функция насыщения стали методом кусочно-линейной аппроксимации (с нелинейными участками)
     Bz2Function(h) {
         var rval = 0;
         var h1 = Math.abs(h);

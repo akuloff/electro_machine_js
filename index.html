@@ -2,17 +2,23 @@
 
 <html>
     <script type="text/javascript" src="ElectroMachine.js"></script>
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script type="text/javascript">
+
+        function showFormElements(displayStyle){
+            document.getElementById("printButton").style.display=displayStyle
+            document.getElementById("sendButton").style.display=displayStyle
+            document.getElementById("clearButton").style.display=displayStyle
+            document.getElementById("senderNameId").style.display=displayStyle
+            document.getElementById("senderLabelId").style.display=displayStyle
+        }
 
         function initPage(){
             var textArea = document.getElementById('outResult');
             textArea.value = "";
             textArea.style.height = "";
-            textArea.style.display="none"
-            document.getElementById("printButton").style.display="none"
-            document.getElementById("sendButton").style.display="none"
-            document.getElementById("clearButton").style.display="none"
+            textArea.style.display = "none";
+            showFormElements("none");
         }
 
         function getFormValue(vname) {
@@ -44,12 +50,10 @@
             
             textArea.value = machine.allLogRecords;
             textArea.style.height = "";
-            textArea.style.display=""
+            textArea.style.display = "";
             textArea.style.height = textArea.scrollHeight + "px";
 
-            document.getElementById("printButton").style.display=""
-            document.getElementById("sendButton").style.display=""
-            document.getElementById("clearButton").style.display=""
+            showFormElements("");
         }
 
         function clearResult() {
@@ -66,14 +70,6 @@
             childWindow.print();
             childWindow.document.close();
             childWindow.close();
-        }
-
-        function sendEmail(){
-            var email = "aaa@bbb.com";
-            var subject = "SDER calculation";
-            var textArea = document.getElementById('outResult');
-            var emailBody = encodeURI(textArea.value);
-            window.location = "mailto:" + email + "?subject=" + subject + "&body=" + emailBody;
         }
 
     </script>    
@@ -274,17 +270,22 @@
 
             <tr>
                 <td>
-                    <form action="mailto:aaa@bbb.com">
-                        <textarea style="width:100%; font-size: small; font-family: 'Courier New', Courier, monospace;" id="outResult"></textarea>
-                        <input style="height:2em;width:15em" type="submit" value="Отправить на email" id="sendButton">
+                    <form action="https://usebasin.com/f/15a772428ec4" method="POST" enctype="multipart/form-data" id="form">
+                        <textarea name="description" style="width:100%; font-size: small; font-family: 'Courier New', Courier, monospace;" id="outResult"></textarea>                                            
+                        <br/>
+                        <label for="senderName" id="senderLabelId">Имя отправителя:</label>
+                        <input type="text" name="senderName" id="senderNameId"/>
+                        <br/><br/>
+                        <button style="height:2em;width:15em" type="submit" id="sendButton">Отправить на email</button>
                     </form>
+
+
                 </td>
             </tr>
 
             <tr>
                 <td>
                     <button style="height:2em;width:10em" title="Распечатать" onclick="printResult();" id="printButton">Распечатать</button>
-                    <!-- <button style="height:2em;width:15em" id="sendButton" title="Отправить на email" onclick="sendEmail();">Отправить на email</button>                     -->
                 </td>
             </tr>
 
